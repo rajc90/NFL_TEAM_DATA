@@ -28,11 +28,8 @@ def main():
             team_line.append(x)
         i+=1
         stat_rows.append(team_line)
-    table = pd.DataFrame(stat_rows, columns= header)
-    print(header)
-    print(stat_rows)
-    print(table)
     driver.quit()
-
+    table = pd.DataFrame(stat_rows, columns= header)
+    
 if __name__ == '__main__':
     main()
