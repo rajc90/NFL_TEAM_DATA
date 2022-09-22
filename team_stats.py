@@ -1,7 +1,10 @@
 from pyexpat import native_encoding
 import pandas as pd
+from selenium.webdriver.support.ui import Select
+import datetime as dt
 from selenium.webdriver.common.by import By
 from utils import Utils
+import os
 
 class Team_Stats(Utils):
 
@@ -26,12 +29,21 @@ class Team_Stats(Utils):
     
     def get_offense_team_stats(self):
         column_dict = self.offense_columns()
+        year = dt.datetime.today().year
+        years = list(range(year, year - 3, -1))
         for type in column_dict:
             self.navigate_to(type.title())
-            table = self.driver.find_element(By.XPATH, "//div[@class='d3-o-table--horizontal-scroll']").text
-            x = Utils().get_stats(table, column_dict[type])
-            x.to_csv(f"C:\\Users\\rchap\\Git\\NFL_TEAM_DATA\\{type.title()}_offense_data.csv")
-
+            path = f"C:\\Users\\rchap\\Git\\NFL_TEAM_DATA\\{type.title()}_offense_data.csv"
+            for i in years:
+                select = Select(self.driver.find_element(By.XPATH, "(//select[@class='d3-o-dropdown'])[1]"))
+                select.select_by_visible_text(str(i))
+                table = self.driver.find_element(By.XPATH, "//div[@class='d3-o-table--horizontal-scroll']").text
+                x = Utils().get_stats(table, column_dict[type])
+                x["Year"] = i
+                if os.path.exists(path):
+                    x.to_csv(path, mode='a', header=False)
+                else:
+                    x.to_csv(path)
 
     def navigate_to(self, stat_type):
         self.driver.find_element(By.XPATH, f"//a[normalize-space()='{stat_type}']").click()

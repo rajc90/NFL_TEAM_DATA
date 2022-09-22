@@ -16,19 +16,15 @@ def main():
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920x1080")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    # team_stats = Team_Stats(driver)
-    # team_stats.get_offense_team_stats()
-    driver.get("https://www.nfl.com/stats/team-stats/")
-    select = Select(driver.find_element(By.XPATH, "(//select[@class='d3-o-dropdown'])[1]"))
-    year = dt.datetime.today().year
-    years = list(range(year, year - 6, -1))
-    for i in years:
-        select = Select(driver.find_element(By.XPATH, "(//select[@class='d3-o-dropdown'])[1]"))
-        select.select_by_visible_text(str(i))
-    # options = [x for x in v.find_elements(By.TAG_NAME, "option")]
-    # for i in range(len(options)):
-    #     options[i].click()
-    #     time.sleep(2)
+    team_stats = Team_Stats(driver)
+    team_stats.get_offense_team_stats()
+    # driver.get("https://www.nfl.com/stats/team-stats/")
+    # select = Select(driver.find_element(By.XPATH, "(//select[@class='d3-o-dropdown'])[1]"))
+    # year = dt.datetime.today().year
+    # years = list(range(year, year - 6, -1))
+    # for i in years:
+    #     select = Select(driver.find_element(By.XPATH, "(//select[@class='d3-o-dropdown'])[1]"))
+    #     select.select_by_visible_text(str(i))
  
 
 if __name__ == '__main__':
