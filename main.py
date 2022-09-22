@@ -1,10 +1,14 @@
+from tkinter.tix import Select
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
+from team_stats import Team_Stats
+from selenium.webdriver.support.ui import Select
+import time
+import datetime as dt
 
 def main():
     options = Options()
@@ -12,24 +16,20 @@ def main():
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920x1080")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver.get("https://www.nfl.com/stats/team-stats/offense/passing/2022/reg/all")
-    table = driver.find_element(By.XPATH, "//div[@class='d3-o-table--horizontal-scroll']").text
-    rows = table.split('\n')
-    header = "Team Att Cmp Cmp% Yds/Att PassYds TD INT Rate 1st 1st% 20+ 40+ Lng Sck SckY"
-    header = header.split(' ')
-    rows.pop(0)
-    stat_rows = []
-    i = 0
-    while i < len(rows):
-        team_line = []
-        team_line.append(rows[i])
-        i+=1
-        for x in rows[i].split(' '):
-            team_line.append(x)
-        i+=1
-        stat_rows.append(team_line)
-    driver.quit()
-    table = pd.DataFrame(stat_rows, columns= header)
-    
+    # team_stats = Team_Stats(driver)
+    # team_stats.get_offense_team_stats()
+    driver.get("https://www.nfl.com/stats/team-stats/")
+    select = Select(driver.find_element(By.XPATH, "(//select[@class='d3-o-dropdown'])[1]"))
+    year = dt.datetime.today().year
+    years = list(range(year, year - 6, -1))
+    for i in years:
+        select = Select(driver.find_element(By.XPATH, "(//select[@class='d3-o-dropdown'])[1]"))
+        select.select_by_visible_text(str(i))
+    # options = [x for x in v.find_elements(By.TAG_NAME, "option")]
+    # for i in range(len(options)):
+    #     options[i].click()
+    #     time.sleep(2)
+ 
+
 if __name__ == '__main__':
     main()
