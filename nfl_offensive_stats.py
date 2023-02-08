@@ -1,3 +1,4 @@
+# USE AS ITS OWN SCRIPT, DO NOT NEED ANY CLASS TO PULL DATA
 from pyexpat import native_encoding
 import pandas as pd
 from selenium.webdriver.support.ui import Select
