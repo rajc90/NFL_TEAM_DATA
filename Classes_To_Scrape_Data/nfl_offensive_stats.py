@@ -38,7 +38,7 @@ def retreive_info_to_csv():
     data = get_offense_team_stats()
     for type in data.keys():
         dataframe = data[type]
-        dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/' + type + '.csv'), index=False)
+        dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/CSV_Data' + type + '.csv'), index=False)
     return data
 
 def get_offense_team_stats(driver, timeframe = 10):
