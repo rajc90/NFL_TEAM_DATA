@@ -1,4 +1,4 @@
-- change code to only take data that is not this years data
+
 - collect win and losses
 - remove code being in csv to adding to pandas dataframe
 1. Find win losses by year
