@@ -15,21 +15,21 @@ class Offensive_Stats(Utils):
     
     @staticmethod
     def offense_columns():
-        PASSING_COLUMNS = "Team Att Cmp Cmp% Yds/Att PassYds TD INT Rate 1st 1st% 20+ 40+ Lng Sck SckY"
-        RUSHING_COLUMNS = "Team Att RushYds YPC TD 20+ 40+ Lng Rush_1st Rush_1st% Rush_FUM"
-        DOWNS_COLUMNS = "Team 3rd_Att 3rd_Md 4th_Att 4th_Md Rec_1st Rec_1st% Rush_1st Rush_1st% Scrm_Plys"
-        column_dict = {'Passing': PASSING_COLUMNS, 'Rushing': RUSHING_COLUMNS, 'Downs': DOWNS_COLUMNS}
+        OFF_PASSING_COLUMNS = "Team O-Pass_Att O-Pass_Cmp O-Pass_Cmp% O-Pass_Yds/Att O-Pass_Yds O-Pass_TD O-Pass_INT O-Pass_Rate O-Pass_1st O-Pass_1st% O-Pass_20+ O-Pass_40+ O-Pass_Lng O-Pass_Sck O-Pass_SckY"
+        OFF_RUSHING_COLUMNS = "Team O-Rush_Att O-Rush_RushYds O-Rush_YPC O-Rush_TD O-Rush_20+ O-Rush_40+ O-Rush_Lng O-Rush_1st O-Rush_1st% O-Rush_FUM"
+        OFF_DOWNS_COLUMNS = "Team O-down_3rd_Att O-down_3rd_Md O-down_4th_Att O-down_4th_Md O-down_Rec_1st O-down_Rec_1st% O-down_Rush_1st O-down_Rush_1st% O-down_Scrm_Plys"
+        column_dict = {'Passing': OFF_PASSING_COLUMNS, 'Rushing': OFF_RUSHING_COLUMNS, 'Downs': OFF_DOWNS_COLUMNS}
         return column_dict
     
-    def retreive_info_to_csv(self):
-        data = self.get_offense_team_stats()
+    def retreive_info_to_csv(self, columns):
+        data = self.get_stats(columns=columns)
         for type in data.keys():
             dataframe = data[type]
             dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/' + type + '.csv'), index=False)
         return data
 
-    def get_offense_team_stats(self, timeframe = 10):
-        column_dict = Offensive_Stats.offense_columns()
+    def get_stats(self, columns, timeframe = 10):
+        column_dict = columns
         year = dt.datetime.today().year
         years = list(range(year-1, year - timeframe, -1))
         offensive_information = {}
@@ -46,26 +46,6 @@ class Offensive_Stats(Utils):
             all_data = pd.concat(all_data, axis = 0, ignore_index=True)
             offensive_information[type.title()] = all_data
         return offensive_information
-
-
-    # def get_offense_team_stats(self, timeframe = 10):
-    #     column_dict = Offensive_Stats.offense_columns()
-    #     year = dt.datetime.today().year
-    #     years = list(range(year-1, year - timeframe, -1))
-    #     offensive_information = {}
-    #     all_data = []
-    #     for type in column_dict:
-    #         self.navigate_to(type.title())
-    #         for i in years:
-    #             select = Select(self.driver.find_element(By.XPATH, "(//select[@class='d3-o-dropdown'])[1]"))
-    #             select.select_by_visible_text(str(i))
-    #             table = self.driver.find_element(By.XPATH, "//div[@class='d3-o-table--horizontal-scroll']").text
-    #             data = Utils().get_stats(table, column_dict[type])
-    #             data["Year"] = i
-    #             all_data.append(data)
-    #     offensive_information = pd.concat(all_data, axis = 0)
-    #         # offensive_information[type.title()] = all_data
-    #     return offensive_information
 
     def navigate_to(self, stat_type):
         self.driver.find_element(By.XPATH, f"//a[normalize-space()='{stat_type}']").click()

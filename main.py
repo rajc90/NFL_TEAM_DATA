@@ -12,7 +12,9 @@ def main():
     options.add_argument("--window-size=1920x1080")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     team_stats = Offensive_Stats(driver)
-    team_stats.retreive_info_to_csv()
+
+    team_stats.retreive_info_to_csv(Offensive_Stats.offense_columns())
+    team_stats.retreive_info_to_csv(Offensive_Stats.defense_columns())
     driver.close()
     driver.quit()
 
