@@ -1,4 +1,4 @@
-from pyexpat import native_encoding
+
 import pandas as pd
 from selenium.webdriver.support.ui import Select
 import datetime as dt
@@ -9,7 +9,6 @@ import os
 
 
 class Offensive_Stats(Utils):
-    
     def __init__(self, driver):
         self.driver = driver
         self.driver.get("https://www.nfl.com/stats/team-stats/")
