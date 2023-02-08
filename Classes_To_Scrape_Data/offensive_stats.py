@@ -67,10 +67,5 @@ class Offensive_Stats(Utils):
     #         # offensive_information[type.title()] = all_data
     #     return offensive_information
 
-
-
-
-
-
     def navigate_to(self, stat_type):
         self.driver.find_element(By.XPATH, f"//a[normalize-space()='{stat_type}']").click()
