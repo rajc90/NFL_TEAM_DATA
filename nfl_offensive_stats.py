@@ -10,7 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from offensive_stats import Offensive_Stats
+from Classes_To_Scrape_Data.offensive_stats import Offensive_Stats
 from utils import Utils
 
 def get_dataframes():
@@ -80,5 +80,3 @@ def get_stats(table, columns):
         stat_rows.append(stat_line)
     table = pd.DataFrame(stat_rows, columns=header)
     return table
-
-get_dataframes()

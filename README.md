@@ -1,1 +1,2 @@
 # NFL_TEAM_DATA
+This class scrapes nfl team statisitcs from https://www.nfl.com/stats/team-stats/ and gathers data related to passing & rushing stats on the offensive and defensive side. The data is gathered from 1970 to 2022
