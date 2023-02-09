@@ -3,21 +3,21 @@ import pandas as pd
 from selenium.webdriver.support.ui import Select
 import datetime as dt
 from selenium.webdriver.common.by import By
-from utils import Utils
+from Classes_To_Scrape_Data.utils import Utils
 import os
 
 class Defense():
     def __init__(self, driver):
         self.driver = driver
         self.driver.get("https://www.nfl.com/stats/team-stats/")
-        self.driver.find_element(By.XPATH, "//span[normalize-space()='Defense']")
+        self.driver.find_element(By.XPATH, "//span[normalize-space()='Defense']").click()
     
     @staticmethod
     def defense_columns():
         DEF_PASSING_COLUMNS = "Team D-Pass_Att D-Pass_Cmp D-Pass_Cmp% D-Pass_Yds/Att D-Pass_Yds D-Pass_TD D-Pass_INT D-Pass_1st D-Pass_1st% D-Pass_Sck"
         DEF_RUSHING_COLUMNS = "Team D-Rush_Att D-Rush_Yds D-Rush_YPC D-Rush_TD D-Rush_1st D-Rush_1st%"
-        DEF_DOWNS_COLUMNS = "Team D-Down_3rd_Att D-Down_3rd_Md D-Down_4th_Att D-Down_4th_Md  D-Down_Rush_1st D-Down_Rush_1st% D-Down_Scrm_Plys"
-        column_dict = {'Passing': DEF_PASSING_COLUMNS, 'Rushing': DEF_RUSHING_COLUMNS, 'Downs': DEF_DOWNS_COLUMNS}
+        #DEF_DOWNS_COLUMNS = "Team D-Down_3rd_Att D-Down_3rd_Md D-Down_4th_Att D-Down_4th_Md  D-Down_Rush_1st D-Down_Rush_1st% D-Down_Scrm_Plys"
+        column_dict = {'Passing_Defense': DEF_PASSING_COLUMNS, 'Rushing_Defense': DEF_RUSHING_COLUMNS}
         return column_dict
 
     def retreive_info_to_csv(self, columns):

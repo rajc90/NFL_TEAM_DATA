@@ -3,18 +3,21 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from Classes_To_Scrape_Data.offensive_stats import Offensive_Stats
-from utils import Utils
+from Classes_To_Scrape_Data.defense import Defense
 
 def main():
     options = Options()
-    options.add_argument("--headless")
+    #options.add_argument("--headless")
     options.add_argument("--disable-gpu")
+    options.add_argument('ignore-certificates-errors')
     options.add_argument("--window-size=1920x1080")
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     team_stats = Offensive_Stats(driver)
+    # def_team_stats = Defense(driver)
 
     team_stats.retreive_info_to_csv(Offensive_Stats.offense_columns())
-    team_stats.retreive_info_to_csv(Offensive_Stats.defense_columns())
+    # def_team_stats.retreive_info_to_csv(Defense.defense_columns())
     driver.close()
     driver.quit()
 
