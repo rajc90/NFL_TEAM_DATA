@@ -17,14 +17,14 @@ class Defense():
         DEF_PASSING_COLUMNS = "Team D-Pass_Att D-Pass_Cmp D-Pass_Cmp% D-Pass_Yds/Att D-Pass_Yds D-Pass_TD D-Pass_INT D-Pass_1st D-Pass_1st% D-Pass_Sck"
         DEF_RUSHING_COLUMNS = "Team D-Rush_Att D-Rush_Yds D-Rush_YPC D-Rush_TD D-Rush_1st D-Rush_1st%"
         #DEF_DOWNS_COLUMNS = "Team D-Down_3rd_Att D-Down_3rd_Md D-Down_4th_Att D-Down_4th_Md  D-Down_Rush_1st D-Down_Rush_1st% D-Down_Scrm_Plys"
-        column_dict = {'Passing_Defense': DEF_PASSING_COLUMNS, 'Rushing_Defense': DEF_RUSHING_COLUMNS}
+        column_dict = {'Passing': DEF_PASSING_COLUMNS, 'Rushing': DEF_RUSHING_COLUMNS}
         return column_dict
 
     def retreive_info_to_csv(self, columns):
         data = self.get_stats(columns=columns)
         for type in data.keys():
             dataframe = data[type]
-            dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/' + type + '.csv'), index=False)
+            dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/CSV_Data/Defense-' + type + '.csv'), index=False)
         return data
 
     def get_stats(self, columns, timeframe = 10):

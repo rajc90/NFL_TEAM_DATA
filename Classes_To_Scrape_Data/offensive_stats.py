@@ -26,7 +26,7 @@ class Offensive_Stats(Utils):
         data = self.get_stats(columns=columns, timeframe = 18)
         for type in data.keys():
             dataframe = data[type]
-            dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/CSV_Data' + type + '.csv'), index=False)
+            dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/CSV_Data/Offensive-' + type + '.csv'), index=False)
         return data
 
     def get_stats(self, columns, timeframe = 10):
