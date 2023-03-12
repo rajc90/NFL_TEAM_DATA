@@ -1,8 +1,0 @@
-
-- collect win and losses
-- remove code being in csv to adding to pandas dataframe
-1. Find win losses by year
-2. Create a seperate class for offense, defense, team, and win loss
-3. Gather data into a big pandas DataFrame
-4. learn plotly or other interactive dashboard package in python
-https://www.teamrankings.com/nfl/trends/win_trends/?range=yearly_2021&sc=is_regular_season
