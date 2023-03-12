@@ -24,7 +24,7 @@ select_game_type = Select(driver.find_element(By.XPATH, "//select[@id='sc']"))
 select_game_type.select_by_visible_text('Regular Season Games')
 time.sleep(2)
 year = dt.datetime.today().year
-years = range(year-1, 2010, -1)
+years = range(year-1, 2003, -1)
 all_data = []
 for year in years:
     time.sleep(2)
