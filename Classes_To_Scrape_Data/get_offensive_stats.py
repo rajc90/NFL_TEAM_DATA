@@ -22,14 +22,14 @@ class Offensive_Stats(Utils):
         column_dict = {'Off_Passing': OFF_PASSING_COLUMNS, 'Off_Rushing': OFF_RUSHING_COLUMNS, 'Off_Downs': OFF_DOWNS_COLUMNS}
         return column_dict
     
-    def retreive_info_to_csv(self, columns):
-        data = self.get_stats(columns=columns, timeframe = 18)
+    def retreive_info_to_csv(self, columns, timeframe):
+        data = self.get_stats(columns=columns, timeframe = timeframe)
         for type in data.keys():
             dataframe = data[type]
             dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/CSV_Data/Offensive-' + type + '.csv'), index=False)
         return data
 
-    def get_stats(self, columns, timeframe = 10):
+    def get_stats(self, columns, timeframe):
         year = dt.datetime.today().year
         years = list(range(year-1, year - timeframe, -1))
         offensive_information = {}

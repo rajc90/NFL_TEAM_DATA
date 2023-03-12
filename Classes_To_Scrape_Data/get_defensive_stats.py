@@ -20,14 +20,14 @@ class Defense():
         column_dict = {'Passing': DEF_PASSING_COLUMNS, 'Rushing': DEF_RUSHING_COLUMNS}
         return column_dict
 
-    def retreive_info_to_csv(self, columns):
-        data = self.get_stats(columns=columns)
+    def retreive_info_to_csv(self, columns, timeframe):
+        data = self.get_stats(columns=columns, timeframe=timeframe)
         for type in data.keys():
             dataframe = data[type]
             dataframe.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/CSV_Data/Defense-' + type + '.csv'), index=False)
         return data
 
-    def get_stats(self, columns, timeframe = 10):
+    def get_stats(self, columns, timeframe):
         column_dict = columns
         year = dt.datetime.today().year
         years = list(range(year-1, year - timeframe, -1))

@@ -2,8 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from Classes_To_Scrape_Data.offensive_stats import Offensive_Stats
-from Classes_To_Scrape_Data.defense import Defense
+from Classes_To_Scrape_Data.get_offensive_stats import Offensive_Stats
+from Classes_To_Scrape_Data.get_defensive_stats import Defense
 
 def main():
     options = Options()
@@ -16,7 +16,7 @@ def main():
     # team_stats = Offensive_Stats(driver)
     # team_stats.retreive_info_to_csv(Offensive_Stats.offense_columns())
     def_team_stats = Defense(driver)
-    def_team_stats.retreive_info_to_csv(Defense.defense_columns())
+    def_team_stats.retreive_info_to_csv(Defense.defense_columns(), 18)
     driver.close()
     driver.quit()
 
