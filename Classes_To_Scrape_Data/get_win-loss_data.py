@@ -12,7 +12,7 @@ import pandas as pd
 COLUMNS = "Team Win-Loss Win% MOV ATS"
 
 options = webdriver.ChromeOptions()
-options.add_argument("--headless")
+# options.add_argument("--headless")
 options.add_argument("--disable-gpu")
 options.add_argument('ignore-certificates-errors')
 options.add_argument("--window-size=1920x1080")
@@ -33,9 +33,6 @@ for year in years:
     select_year.select_by_visible_text(str(year))
     time.sleep(3)
     table = driver.find_element(By.XPATH, "//tbody").text
-    driver.quit()
-    driver.close()
-
     rows = table.split('\n')
     columns = COLUMNS.split(' ')
     data_rows = []
@@ -50,8 +47,11 @@ for year in years:
         data_rows.append(data_line)
         i += 1
     data = pd.DataFrame(data_rows, columns=columns)
+    print(data)
     data["Year"] = year
     all_data.append(data)
 all_data = pd.concat(all_data, axis = 0, ignore_index=True)
-all_data.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/CSV_Data/' + 'Win_Loss' + '.csv'), index=False)
 driver.close()
+driver.quit()
+all_data.to_csv(str('C:/Users/rchap/Git/NFL_TEAM_DATA/CSV_Data/' + 'Win_Loss' + '.csv'), index=False, mode='w')
+print(all_data.head())
