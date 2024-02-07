@@ -1,3 +1,5 @@
 venv
 __pycache__
 /Classes_To_Scrape_Data
+/__pycache__
+Classes_To_Scrape_Data
