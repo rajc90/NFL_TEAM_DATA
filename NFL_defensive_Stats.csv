@@ -1,4 +1,4 @@
-Team,Att_Pass,Cmp,Cmp %,Yds/Att,Yds,TD_Pass,INT_Pass,1st,1st%,Sck,Year,Att_Rush,Rush Yds,YPC,TD_Rush,Rush 1st_Pass,Rush 1st%_Pass,3rd Att,3rd Md,4th Att,4th Md,Rush 1st_Rush,Rush 1st%_Rush,Scrm Plys,FF,FR,FR TD,INT_y,INT TD,INT Yds,Lng
+Team,Def_Passing_Att,Cmp,Cmp %,Yds/Att,Yds,Def_Passing_TD,Def_Passing_INT,1st,1st%,Sck,Year,Def_Att,Rush Yds,YPC,Def_TD,Def_Passing_Rush 1st,Def_Passing_Rush 1st%,3rd Att,3rd Md,4th Att,4th Md,Def_Rush 1st,Def_Rush 1st%,Scrm Plys,FF,FR,FR TD,INT_y,INT TD,INT Yds,Lng
 Giants,519,309,59.5,6.6,3412,25,10,178,34.3,45,2003,496,1908,3.8,12,102,20.6,225,85,11,5,102,20.6,1060,21,0,0,10,2,199,56
 Rams,510,296,58,6,3072,23,24,164,32.2,42,2003,412,1980,4.8,9,92,22.3,209,75,21,9,92,22.3,964,25,0,0,24,3,505,74
 Buccaneers,475,274,57.7,5.7,2710,16,20,140,29.5,36,2003,451,1756,3.9,6,89,19.7,214,68,18,7,89,19.7,962,23,0,0,20,3,229,44
